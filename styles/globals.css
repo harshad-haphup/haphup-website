@@ -4,13 +4,19 @@
 
 @layer components {
   .card {
-    @apply bg-white rounded-xl px-8 py-4 shadow-lg;
+    @apply bg-white rounded-xl p-2 sm:px-8 sm:py-4 shadow-lg flex sm:flex-col items-center sm:items-start;
+  }
+  .card-header{
+    @apply flex justify-center sm:justify-start w-1/5 sm:w-auto;
+  }
+  .card-content{
+    @apply pl-2 sm:pl-0 w-4/5 sm:w-auto;
   }
   .card-image{
-    @apply rounded-3xl p-4 h-16 flex justify-center items-center;
+    @apply rounded-3xl p-1 sm:p-3 w-16 h-16 flex justify-center items-center;
   }
   .card-hover{
-    @apply ease-in duration-200 hover:-translate-y-8 hover:shadow-none;
+    @apply ease-in duration-200 hover:-translate-y-4 hover:shadow-none;
   }
   
 }
@@ -42,9 +48,11 @@ body {
     height: 100vh;
     font-family: 'Poppins', sans-serif;
     background-color: var(--white-color);
+    overflow-x: hidden;
 }
 .contact-us{
-  background-image: url("../public/assests/img/contact-us.svg");
+  /* background-image: url("../public/assests/img/contact-us.svg");÷ */
+  background-image: url("../public/assests/img/Saly-1.svg");
 }
 .feature-bg{
   background: repeating-linear-gradient(135deg, #e0e0e099 0, #e0e0e07f 10%, transparent 0, transparent 50%);
@@ -52,3 +60,33 @@ body {
   background-color: #f4f4f457;
 }
 
+
+.slider {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+.slider::before,
+.slider::after{
+  content:'';
+  position:absolute;
+  background-image:linear-gradient(to right,rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
+  width:15%;
+  height:100%;
+  z-index:2;
+  pointer-events:none;
+}
+.slider::before{
+  left:0;
+  top:0;
+}
+.slider::after{
+  right:0;
+  top:0;
+  transform:rotateZ(180deg);
+}
+
+
+.slide-top{animation:slide-top .7s cubic-bezier(.25,.46,.45,.94) both}
+
+@keyframes slide-top{0%{transform:translateY(10px)}100%{transform:translateY(0)}}
