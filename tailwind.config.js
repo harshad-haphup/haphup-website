@@ -1,10 +1,13 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+const withMT = require("@material-tailwind/react/utils/withMT");
+
+module.exports = withMT({
   content: [
     './pages/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',
     './app/**/*.{js,ts,jsx,tsx}',
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       backgroundImage: {
@@ -17,9 +20,21 @@ module.exports = {
         'secondary-color':'#4877fb',
         'accent-color':'#3cedb7',
         'heading-color':'#2D3958',
-        'text-color':'#7B88A8',
+        // 'text-color':'#7B88A8',
+        'text-color':'#637193',
         'white-color':'#ffffff',
         'bg-color':'#fefefe',
+        'card-color':'#ffffff',
+
+
+        'dark-card-color':'#1F1F22',
+        'dark-primary-color':'#001053',
+        'dark-secondary-color':'#02164f',
+        'dark-accent-color':'#064431',
+        'dark-heading-color':'#c1c9df',
+        'dark-text-color':'#7B88A8',
+        'dark-white-color':'#404040',
+        'dark-bg-color':'#121212'
       },
       keyframes: {
         marquee: {
@@ -34,3 +49,4 @@ module.exports = {
   },
   plugins: [],
 }
+)

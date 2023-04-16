@@ -4,7 +4,7 @@
 
 @layer components {
   .card {
-    @apply bg-white rounded-xl p-2 sm:px-8 sm:py-4 shadow-lg flex sm:flex-col items-center sm:items-start;
+    @apply bg-card-color dark:bg-dark-card-color rounded-xl p-2 sm:px-8 sm:py-4 shadow-lg flex sm:flex-col items-center sm:items-start;
   }
   .card-header{
     @apply flex justify-center sm:justify-start w-1/5 sm:w-auto;
@@ -42,6 +42,9 @@
     --background-end-rgb: 0, 0, 0; */
   }
 }
+html{
+  scroll-behavior: smooth;
+}
 
 body {
     width: 100%;
@@ -58,6 +61,12 @@ body {
   background: repeating-linear-gradient(135deg, #e0e0e099 0, #e0e0e07f 10%, transparent 0, transparent 50%);
   background-size: 3em 3em;
   background-color: #f4f4f457;
+}
+html.dark .feature-bg{
+  background: repeating-linear-gradient(135deg, #1f1f1f 0, #1f1f1f 10%, transparent 0, transparent 50%);
+  background-size: 3em 3em;
+  background-color: #121212;
+  opacity: 1
 }
 
 
@@ -76,6 +85,12 @@ body {
   z-index:2;
   pointer-events:none;
 }
+html.dark .slider::before{
+    background-image:linear-gradient(to right,#121212 0%,rgba(255,255,255,0) 100%);
+}
+html.dark .slider::after{
+  background-image:linear-gradient(to right,#121212 0%,rgba(255,255,255,0) 100%);
+}
 .slider::before{
   left:0;
   top:0;
@@ -86,7 +101,18 @@ body {
   transform:rotateZ(180deg);
 }
 
-
 .slide-top{animation:slide-top .7s cubic-bezier(.25,.46,.45,.94) both}
 
 @keyframes slide-top{0%{transform:translateY(10px)}100%{transform:translateY(0)}}
+
+.footer-bg{
+  background-image: url("../public/assests/img/world-map.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+html.dark .selectBox ul{
+  background-color: #19191b;
+  color: #c1c9df;
+  border-color: #4a4a52;
+}
