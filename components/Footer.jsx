@@ -16,7 +16,7 @@ const Footer = () => {
             <div className='p-4 sm:p-16 pt-10 flex flex-col sm:flex-row justify-between items-center sm:items-center  bg-secondary-color/5'>
             
                 <div className='sm:px-4 flex flex-col items-center sm:items-start'>
-                    <Image src={logo} alt='logo' priority={false}/>
+                    <Image src={logo} alt='logo' priority={false} placeholder="blur" blurDataURL={'../public/assests/logo.svg'}/>
                     <div className='flex items-center gap-2 sm:gap-4 mt-6'>
                         <div className='w-8 h-8 p-2 mr-2 sm:mr-0 bg-primary-color/20 rounded-full flex items-center'>
                             <Image src={locationIcon} alt='location-icon' className='w-full h-full object-contain'/>

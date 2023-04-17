@@ -31,7 +31,7 @@ const Contactus = () => {
                     className='w-full md:w-3/4 p-4 rounded-full dark:bg-dark-bg-color text-heading-color dark:text-dark-heading-color font-semibold text-lg pl-8 outline-none border-none focus:border-none focus:outline-none'
                     placeholder='Email Address...'
                     />
-                    <button className='sm:absolute  sm:right-2 sm:top-2 p-4 mt-2 cursor-pointer sm:mt-0 bg-accent-color rounded-full uppercase text-heading-color font-semibold'>Notify Me</button>
+                    <button className='sm:absolute  sm:right-2 sm:top-2 p-4 mt-2 cursor-pointer sm:mt-[2px] bg-accent-color rounded-full uppercase text-heading-color font-semibold'>Notify Me</button>
                 </motion.div>
             </div>    
         </div>

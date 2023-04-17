@@ -8,19 +8,33 @@ import moonIcon from "public/assests/img/moon-icon.svg";
 import { motion } from "framer-motion";
 import Modal from "./modals/Modal";
 import {useTheme} from 'next-themes'
+import { BsSunFill, BsMoonFill } from "react-icons/bs";
 
 const Header = () => {
   const [showModal, setShowModal] = useState(false);
-  // const [theme, setTheme] = useState(true);
-  const {theme, setTheme} = useTheme()
+  const [mounted, setMounted] = useState(false);
 
-  // useEffect(()=>{
-  //   if(theme)
-  //     document.documentElement.classList.remove('dark')
-  //   else
-  //     document.documentElement.classList.add('dark')
-  // },[theme])
-  
+  const {systemTheme, theme, setTheme}=useTheme();
+
+  useEffect(()=>{
+    setMounted(true)
+  },[])
+
+  const renderThemeChanger = () => {
+    if(!mounted)  return null;
+    const currentTheme = theme === 'system' ? systemTheme : theme;
+    if(currentTheme === 'dark')
+    {
+      return(
+         <Image src={sunIcon} className="w-full h-full object-cover select-none" priority={true} alt="swith-theme" title="change theme" onClick={()=>setTheme('light')}/> 
+         )
+    }else{
+          return(
+            <Image src={moonIcon} className="w-full h-full object-cover select-none" priority={true} alt="swith-theme" title="change theme" onClick={()=>setTheme('dark')}/> 
+          )
+    }
+  }
+
   return (
     <>
     {
@@ -39,10 +53,8 @@ const Header = () => {
           <Image src={logo} alt="logo" priority={false} />
         </motion.nav>
 
-        <div className="fixed top-4 right-4 z-30 flex gap-4 w-6 h-6 p-1 bg-black/10 dark:bg-white/10 cursor-pointer rounded" onClick={()=>setTheme(theme === 'dark' ? 'light' : 'dark')}>
-          <Image src={theme ? moonIcon : sunIcon} className="w-full h-full object-cover select-none" priority={true} alt="swith-theme" title="change theme"/>
-          {/* <input type="checkbox" name="mode" onChange={()=>setTheme(!theme)} id="theme" checked={theme}/>
-          <label htmlFor="theme" className="text-black dark:text-white">Change Theme</label> */}
+        <div className="fixed top-4 right-4 z-30 flex gap-4 w-6 h-6 p-1 bg-black/5 dark:bg-white/10 cursor-pointer rounded select-none">
+          {renderThemeChanger()}
         </div>
 
         <div className="flex items-center justify-center w-full h-screen flex-col-reverse md:flex-row bg-bg-color dark:bg-dark-bg-color">

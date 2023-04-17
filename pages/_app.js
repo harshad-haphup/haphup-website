@@ -19,7 +19,7 @@ export default function App({ Component, pageProps }) {
       <noscript data-n-css=""></noscript>
     </Head>
     <Layout>
-    <ThemeProvider attribute="class">
+    <ThemeProvider enableSystem={true} attribute="class">
       <Component {...pageProps} />
       <ScrollToTop/>
     </ThemeProvider>
