@@ -7,8 +7,27 @@ import { useForm } from "react-hook-form";
 const Modal = ({setShowModal}) => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
-        console.log(data)
-        setShowModal(false)
+        // console.log(data)
+        fetch("/api/contact", {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json'
+          },
+          body: JSON.stringify(data),
+        }).then((response)=>response.json())
+        .then(data=>{
+          if(data && data.status === 'success'){
+            setShowModal(false)
+            alert("Mail Sent Successfully")
+          }
+        })
+        .catch((error)=>{
+          setShowModal(false)
+          console.log("error",error)
+          alert("Mail not Sent")
+        
+        })
     };
   return (
     <>
@@ -37,19 +56,36 @@ const Modal = ({setShowModal}) => {
             </button>
           </div>
           {/*body*/}
-          <div className="relative p-6 flex-auto">
+          <div className="relative p-6">
             <form action="#" onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-4'>
-               <div>
-                    <Input size="lg" label="Name*"  color="indigo" {...register("name", { required: true })} error={Boolean(errors.name)} className='text-text-color dark:text-dark-text-color'/>
-                    {Boolean(errors.name) && <p className='text-xs mt-1 text-red-500 ml-1'>Name is Required</p>}
+               <div className='flex flex-col sm:flex-row gap-4 w-full'>
+                <div className='w-full'>
+                      <Input size="lg" label="Name*"  color="indigo" 
+                      {...register("name", { required: "Name is Required",
+                      pattern: {
+                      value: /^[a-zA-Z ]+$/,
+                      message: "Only characters are Accepted",
+                    },
+                    minLength: {
+                      value: 2,
+                      message: "Minimum length 2 required",
+                    }, })}
+                     error={Boolean(errors.name)} className='text-text-color dark:text-dark-text-color py-6 text-lg'/>
+                      {Boolean(errors.name) && <p className='text-xs mt-2 text-red-500 ml-1'>{errors.name?.message}</p>}
+                </div>
+                <div className='w-full'>
+                      <Input size="lg" label="Email*" color="indigo" {...register("email", { required:  "Email is Required",
+                      pattern: {
+                      value: /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/,
+                      message: "Enter valid Email Address",
+                    }, })} 
+                    error={Boolean(errors.email)} className='text-text-color dark:text-dark-text-color py-6 text-lg'/>
+                      {Boolean(errors.email) && <p className='text-xs mt-2 text-red-500 ml-1'>{errors.email?.message}</p>}
+                </div>
                </div>
                <div>
-                    <Input size="lg" label="Email*" color="indigo" {...register("email", { required: true })} error={Boolean(errors.email)} className='text-text-color dark:text-dark-text-color'/>
-                    {Boolean(errors.email) && <p className='text-xs mt-1 text-red-500 ml-1'>Email is Required</p>}
-               </div>
-               <div>
-                    <Textarea size="lg" label="Message*" color='indigo' {...register("msg", { required: true })} error={Boolean(errors.msg)} className='text-text-color dark:text-dark-text-color'/>
-                    {Boolean(errors.msg) && <p className='text-xs mt-1 text-red-500 ml-1'>Message is Required</p>}
+                    <Textarea size="lg" label="Message*" color='indigo' {...register("msg", { required:  "Message is Required" })} error={Boolean(errors.msg)} className='text-text-color dark:text-dark-text-color'/>
+                    {Boolean(errors.msg) && <p className='text-xs mt-2 text-red-500 ml-1'>{errors.msg?.message}</p>}
                </div>
               <input type="submit" className='outline-none border-0 bg-primary-color uppercase text-xl text-white-color tracking-wider font-bold p-4 rounded-lg w-full mt-4 cursor-pointer' value="Submit"/>
             </form>

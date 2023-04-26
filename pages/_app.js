@@ -1,5 +1,6 @@
 import '@/styles/globals.css'
 import Head from 'next/head'
+import Script from 'next/script'
 import { ThemeProvider } from 'next-themes'
 import Layout from '../components/layout'
 import { ScrollToTop } from '@/components/ScrollToTop'
@@ -23,6 +24,7 @@ export default function App({ Component, pageProps }) {
       <Component {...pageProps} />
       <ScrollToTop/>
     </ThemeProvider>
+   
     </Layout>
     </>
   )

@@ -13,8 +13,27 @@ const JoinusModal = ({setShowJoinUsModal}) => {
     }
     
     const onSubmit = data => {
-      console.log(data)
+      // console.log(data)
+      fetch("/api/career", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        body: JSON.stringify(data),
+      }).then((response)=>response.json())
+      .then(data=>{
+        if(data && data.status === 'success'){
+          setShowJoinUsModal(false)
+          alert("Mail Sent Successfully")
+        }
+      })
+      .catch((error)=>{
         setShowJoinUsModal(false)
+        console.log("error",error)
+        alert("Mail not Sent")
+      
+      })
     };
   return (
     <>
@@ -45,41 +64,69 @@ const JoinusModal = ({setShowJoinUsModal}) => {
           {/*body*/}
           <div className="relative selectBox p-6 flex-auto">
             <form action="#" onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-4'>
-             <div>
-                <Input type="text" size="lg" label="Name*"  color="indigo" {...register("name", { required: true })} error={Boolean(errors.name)} className='text-text-color dark:text-dark-text-color'/>
-                {Boolean(errors.name) && <p className='text-xs mt-1 text-red-500 ml-1'>Name is Required</p>}
-             </div>
-             <div>
-                <Input type="email" size="lg" label="Email*"  color="indigo" {...register("email", { required: true })} error={Boolean(errors.email)} className='text-text-color dark:text-dark-text-color'/>
-                {Boolean(errors.email) && <p className='text-xs mt-1 text-red-500 ml-1'>Email is Required</p>}
-             </div>
-             <div>
-                <Select
-                  label='Select Job Profile*'
-                  name='job_role'
-                  value={jobProfile}
-                  onChange={handleJobProfileChange}
-                  error={errors.job_profile ? true : false}
-                  className='text-heading-color dark:text-dark-heading-color'
-                >
-                  {/* <Option value="">Select Job Profile</Option> */}
-                  <Option value='ror_developer'>ROR Developer</Option>
-                  <Option value='frontend_devloper'>Frontend Developer</Option>
-                  <Option value='backend_devloper'>Backend Developer</Option>
-                  <Option value='react_devloper'>React Developer</Option>
-                  <Option value='tester'>tester Developer</Option>
-                  <Option value='other' >Other</Option>
-                </Select>
-                {Boolean(errors.job_profile) && <p className='text-xs mt-1 text-red-500 ml-1'>Job Profile is Required</p>}
+              <div className='flex flex-col sm:flex-row gap-4 w-full'>
+                <div className='w-full'>
+                  <Input type="text" size="lg" label="Name*"  color="indigo" {...register("name", { required: "Name is Required",
+                      pattern: {
+                      value: /^[a-zA-Z ]+$/,
+                      message: "Only characters are Accepted",
+                    },
+                    minLength: {
+                      value: 2,
+                      message: "Minimum length 2 required",
+                    },
+                  })} error={Boolean(errors.name)} className='text-text-color dark:text-dark-text-color'/>
+                  {Boolean(errors.name) && <p className='text-xs mt-1 text-red-500 ml-1'>{errors.name?.message}</p>}
+                </div>
+                <div className='w-full'>
+                    <Input type="email" size="lg" label="Email*"  color="indigo" {...register("email", { required: "Email is Required",
+                      pattern: {
+                      value: /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/,
+                      message: "Enter valid Email Address",
+                    }, 
+                     })} error={Boolean(errors.email)} className='text-text-color dark:text-dark-text-color'/>
+                    {Boolean(errors.email) && <p className='text-xs mt-1 text-red-500 ml-1'>{errors.email?.message}</p>}
+                </div>
+              </div>
 
-                <input type="hidden" name="job_profile" {...register("job_profile",{required:true})} className='bg-gray-200'/>
-               
-             </div>
+              <div className='flex flex-col sm:flex-row gap-4 w-full'>
+                <div className='w-full'>
+                  <Select
+                    label='Select Job Profile*'
+                    name='job_role'
+                    value={jobProfile}
+                    onChange={handleJobProfileChange}
+                    error={errors.job_profile ? true : false}
+                    className='text-heading-color dark:text-dark-heading-color'
+                  >
+                    {/* <Option value="">Select Job Profile</Option> */}
+                    <Option value='ror_developer'>ROR Developer</Option>
+                    <Option value='frontend_devloper'>Frontend Developer</Option>
+                    <Option value='backend_devloper'>Backend Developer</Option>
+                    <Option value='react_devloper'>React Developer</Option>
+                    <Option value='tester'>tester Developer</Option>
+                    <Option value='other' >Other</Option>
+                  </Select>
+                  {Boolean(errors.job_profile) && <p className='text-xs mt-1 text-red-500 ml-1'>Job Profile is Required</p>}
+
+                  <input type="hidden" name="job_profile" {...register("job_profile",{required:true})} className='bg-gray-200'/>
+                
+                </div>
+                <div className='w-full'>
+                    <Input type="text" size="lg" label="LinkedIn Profile*"  color="indigo" {...register("linkedin_profile", { required: "LinkedIn Profile is Required",
+                      pattern: {
+                      value: /^[a-zA-Z]+$/,
+                      message: "Only characters are Accepted",
+                    },
+                    minLength: {
+                      value: 2,
+                      message: "Minimum length 2 required",
+                    },
+                     })} error={Boolean(errors.linkedin_profile)}/>
+                    {Boolean(errors.linkedin_profile) && <p className='text-xs mt-1 text-red-500 ml-1'>{errors.linkedin_profile?.message}</p>}
+                </div> 
+              </div>
              
-             <div>
-                <Input type="text" size="lg" label="LinkedIn Profile*"  color="indigo" {...register("linkedin_profile", { required: true })} error={Boolean(errors.linkedin_profile)}/>
-                {Boolean(errors.linkedin_profile) && <p className='text-xs mt-1 text-red-500 ml-1'>LinkedIn Profile is Required</p>}
-             </div>
               
               <input type="submit" className='outline-none border-0 bg-primary-color uppercase text-xl text-white-color tracking-wider font-bold p-4 rounded-lg w-full mt-4 cursor-pointer' value="Submit"/>
             </form>
