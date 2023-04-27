@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import Image from "next/image";
 import trustIcon from "public/assests/img/trust-icon.svg";
 import diamondIcon from "public/assests/img/diamond-icon.svg";
@@ -12,7 +12,6 @@ import pythonLogo from "public/assests/img/python-logo.svg";
 import awsLogo from "public/assests/img/aws-logo.svg";
 import postgresqlLogo from "public/assests/img/postgresql-logo.svg";
 import Modal from "./modals/Modal";
-import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
 import JoinusModal from './modals/JoinusModal';
 
@@ -20,19 +19,13 @@ import { opacityAnim } from "./animations/Animation";
 
 
 
-const Features = () => {
-  const { register, handleSubmit, watch, formState: { errors } } = useForm();
-  const onSubmit = data => {
-      console.log(data)
-      setShowModal(false)
-  };
-  const [showJoinUsModal, setShowJoinUsModal] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+const Features = ({showModal,setShowModal,showJoinUsModal,setShowJoinUsModal,sendDataForEmail,sendDataForCareerEmail}) => {
   return (
     <>
      {
-      showModal && <Modal setShowModal={setShowModal}/>
+      showModal && <Modal setShowModal={setShowModal} sendDataForEmail={sendDataForEmail}/>
     }
+   
     <div className='px-6 md:px-12 lg:px-20 pt-14 pb-20 bg-bg-color dark:bg-dark-bg-color'>
       <motion.h2 
         initial={{ y: -50, opacity: 0 }}
@@ -194,7 +187,7 @@ const Features = () => {
    </div>
 
       {showJoinUsModal ? (
-        <JoinusModal setShowJoinUsModal={setShowJoinUsModal}/>
+        <JoinusModal setShowJoinUsModal={setShowJoinUsModal} sendDataForCareerEmail={sendDataForCareerEmail}/>
       ) : null}
 
     </>

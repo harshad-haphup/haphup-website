@@ -3,7 +3,7 @@ import { Input, Option, Select } from '@material-tailwind/react'
 import { useForm } from "react-hook-form";
 import { motion } from 'framer-motion'
 
-const JoinusModal = ({setShowJoinUsModal}) => {
+const JoinusModal = ({setShowJoinUsModal,sendDataForCareerEmail}) => {
     const { register, handleSubmit, setValue, watch, formState: { errors } } = useForm();
     const[jobProfile,setJobProfile]=useState("")
   
@@ -14,26 +14,12 @@ const JoinusModal = ({setShowJoinUsModal}) => {
     
     const onSubmit = data => {
       // console.log(data)
-      fetch("/api/career", {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json'
-        },
-        body: JSON.stringify(data),
-      }).then((response)=>response.json())
-      .then(data=>{
-        if(data && data.status === 'success'){
-          setShowJoinUsModal(false)
-          alert("Mail Sent Successfully")
-        }
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
       })
-      .catch((error)=>{
-        setShowJoinUsModal(false)
-        console.log("error",error)
-        alert("Mail not Sent")
-      
-      })
+      sendDataForCareerEmail(data)
+    
     };
   return (
     <>
