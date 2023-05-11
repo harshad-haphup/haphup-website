@@ -116,3 +116,188 @@ html.dark .selectBox ul{
   color: #c1c9df;
   border-color: #4a4a52;
 }
+
+
+/* Loader Animation */
+
+
+
+
+@-webkit-keyframes animate-svg-stroke-1 {
+  0% {
+    stroke-dashoffset: 286.5751647949219px;
+    stroke-dasharray: 286.5751647949219px;
+  }
+
+  100% {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 286.5751647949219px;
+  }
+}
+
+@keyframes animate-svg-stroke-1 {
+  0% {
+    stroke-dashoffset: 286.5751647949219px;
+    stroke-dasharray: 286.5751647949219px;
+  }
+
+  100% {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 286.5751647949219px;
+  }
+}
+
+/*first a*/
+.svg-elem-1 {
+  -webkit-animation: animate-svg-stroke-1 infinite cubic-bezier(0.47, 0, 0.745, 0.715) 0.6s both;
+          animation: animate-svg-stroke-1 infinite cubic-bezier(0.47, 0, 0.745, 0.715) 0.6s both;
+}
+
+@-webkit-keyframes animate-svg-stroke-2 {
+  0% {
+    stroke-dashoffset: 307.3744812011719px;
+    stroke-dasharray: 307.3744812011719px;
+  }
+
+  100% {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 307.3744812011719px;
+  }
+}
+
+@keyframes animate-svg-stroke-2 {
+  0% {
+    stroke-dashoffset: 307.3744812011719px;
+    stroke-dasharray: 307.3744812011719px;
+  }
+
+  100% {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 307.3744812011719px;
+  }
+}
+
+/*First P*/
+.svg-elem-2 {
+  -webkit-animation: animate-svg-stroke-2 infinite cubic-bezier(0.47, 0, 0.745, 0.715) 0.6s both;
+          animation: animate-svg-stroke-2 infinite cubic-bezier(0.47, 0, 0.745, 0.715) 0.6s both;
+}
+
+@-webkit-keyframes animate-svg-stroke-3 {
+  0% {
+    stroke-dashoffset: 312.3018493652344px;
+    stroke-dasharray: 312.3018493652344px;
+  }
+
+  100% {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 312.3018493652344px;
+  }
+}
+
+@keyframes animate-svg-stroke-3 {
+  0% {
+    stroke-dashoffset: 312.3018493652344px;
+    stroke-dasharray: 312.3018493652344px;
+  }
+
+  100% {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 312.3018493652344px;
+  }
+}
+/*Last p*/
+.svg-elem-3 {
+  -webkit-animation: animate-svg-stroke-3 infinite cubic-bezier(0.47, 0, 0.745, 0.715) 0.6s both;
+          animation: animate-svg-stroke-3 infinite cubic-bezier(0.47, 0, 0.745, 0.715) 0.6s both;
+}
+
+@-webkit-keyframes animate-svg-stroke-4 {
+  0% {
+    stroke-dashoffset: 309.30291748046875px;
+    stroke-dasharray: 309.30291748046875px;
+  }
+
+  100% {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 309.30291748046875px;
+  }
+}
+
+@keyframes animate-svg-stroke-4 {
+  0% {
+    stroke-dashoffset: 309.30291748046875px;
+    stroke-dasharray: 309.30291748046875px;
+  }
+
+  100% {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 309.30291748046875px;
+  }
+}
+
+/* First H */
+.svg-elem-4 {
+  -webkit-animation: animate-svg-stroke-4 infinite cubic-bezier(0.47, 0, 0.745, 0.715) 0.6s both;
+          animation: animate-svg-stroke-4 infinite cubic-bezier(0.47, 0, 0.745, 0.715) 0.6s both;
+}
+
+@-webkit-keyframes animate-svg-stroke-5 {
+  0% {
+    stroke-dashoffset: 391.58416748046875px;
+    stroke-dasharray: 391.58416748046875px;
+  }
+
+  100% {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 391.58416748046875px;
+  }
+}
+
+@keyframes animate-svg-stroke-5 {
+  0% {
+    stroke-dashoffset: 391.58416748046875px;
+    stroke-dasharray: 391.58416748046875px;
+  }
+
+  100% {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 391.58416748046875px;
+  }
+}
+
+/* second H*/
+.svg-elem-5 {
+  -webkit-animation: animate-svg-stroke-5 infinite cubic-bezier(0.47, 0, 0.745, 0.715) 0.6s both;
+          animation: animate-svg-stroke-5 infinite cubic-bezier(0.47, 0, 0.745, 0.715) 0.6s both;
+}
+
+@-webkit-keyframes animate-svg-stroke-6 {
+  0% {
+    stroke-dashoffset: 308.864501953125px;
+    stroke-dasharray: 308.864501953125px;
+  }
+
+  100% {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 308.864501953125px;
+  }
+}
+
+@keyframes animate-svg-stroke-6 {
+  0% {
+    stroke-dashoffset: 308.864501953125px;
+    stroke-dasharray: 308.864501953125px;
+  }
+
+  100% {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 308.864501953125px;
+  }
+}
+
+/* U */
+.svg-elem-6 {
+  -webkit-animation: animate-svg-stroke-6 infinite cubic-bezier(0.47, 0, 0.745, 0.715) 0.6s both;
+          animation: animate-svg-stroke-6 infinite cubic-bezier(0.47, 0, 0.745, 0.715) 0.6s both;
+}

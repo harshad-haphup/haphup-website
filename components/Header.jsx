@@ -10,6 +10,7 @@ import Modal from "./modals/Modal";
 import { useTheme } from "next-themes";
 import ReCAPTCHA from "react-google-recaptcha";
 import { verifyAndSendMail } from "@/services/verifyAndSendMail";
+import Loader from "./Loader";
 
 const Header = ({showModal,setShowModal,sendDataForEmail}) => {
   const [mounted, setMounted] = useState(false);
@@ -122,6 +123,7 @@ const Header = ({showModal,setShowModal,sendDataForEmail}) => {
             >
               Get Started
             </motion.button>
+            
           </div>
           <motion.div
             initial={{ y: 10, opacity: 0 }}

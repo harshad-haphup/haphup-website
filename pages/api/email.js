@@ -10,8 +10,7 @@ export default async function handler(req, res) {
     return;
   }
 
-  // console.log("data from client",req.body)
-  const { name, email, job_profile, linkedin_profile,token } = req.body;
+  const { email,token } = req.body;
 
   const human = await validateHuman(token);
 
@@ -25,22 +24,27 @@ export default async function handler(req, res) {
   const mailData = {
     from: EMAIL_ID,
     to: EMAIL_ID,
-    subject: `New Career Alert | ${name}`,
+    subject: `New Contact us Alert`,
     text: " By : " + email,
-    html: `<h2 style="border-bottom:2px solid black;padding:10px">Your Alert For <span style="font-weight:700">Join Us</span></h2><p>Name - <span style="font-weight:700">${name}</span></p><p>Applying For - <span style="font-weight:700">${job_profile}</span></p><p>Email - <span style=color:grey>${email}</span></p><a href=https://www.linkedin.com/in/${linkedin_profile}>LinkedIn Profile</a>`,
+    html: `<h2 style="border-bottom:2px solid black;padding:10px">Your Alert For <span style="font-weight:700">Contact Us</span></h2>Email - <span style=color:grey>${email}</span></p>`,
   };
 
   try {
     const response = await sendMail(mailData);
     if (response) {
-      res.status(200).json({ status: "success", msg: "Mail Sent Successfully" });
+      res
+        .status(200)
+        .json({ status: "success", msg: "Mail Sent Successfully" });
       return;
     }
   } catch (error) {
-    res.status(400).json({status: 'failed', message: 'Some error occured'})
+    res.status(400).json({ status: "failed", message: "Some error occured" });
     return;
   }
-  res.status(500).json({ status: "failed", message: "Mail Not Sent Successfully" });
+
+  res
+    .status(500)
+    .json({ status: "failed", message: "Mail Not Sent Successfully" });
 }
 
 async function sendMail(mailData) {
