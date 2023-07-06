@@ -44,6 +44,7 @@ const Sevices = () => {
                   src={reactLogo}
                   alt="react"
                   className="w-full h-full object-contain"
+                  width={100} height={100}
                 />
               </div>
             </div>
@@ -69,6 +70,7 @@ const Sevices = () => {
                   src={railsLogo}
                   alt="react"
                   className="w-full h-full object-contain"
+                  width={100} height={100}
                 />
               </div>
             </div>
